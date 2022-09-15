@@ -4,7 +4,7 @@ def open_header(arg_list)
   return Error::EXCEPTION.invalid_txt_file if valid_txt?(file)
   return Error::EXCEPTION.empty_file if File.zero?(file)
   header_file = File.open(file)
-  STRUCT[:header] = header_file
+  STRUCT[:header_file] = header_file
 end
 
 def valid_txt?(file)
@@ -16,12 +16,11 @@ def parse_directory(arg_list)
   directory_path_str = arg_list[1]
   return Error::EXCEPTION.not_a_directory if File.file?(directory_path_str)
   files = Dir.glob("#{directory_path_str}/**/*").select { |path| File.file?(path) }
-  c_files = files.select { |path| path.end_with?(".c") }
-  h_files = files.select { |path| path.end_with?(".h") }
-  if files.empty? || c_files.empty? && c_files.empty? 
+  files = files.select { |path| path.end_with?(".c") || path.end_with?(".h") }
+  if files.empty?
     return Error::EXCEPTION.files_not_found
   else
-    STRUCT[:files] = c_files.push(h_files).flatten!
+    STRUCT[:files] = files.sort_by { |path| path.reverse }.flatten
     generate_timestamp
   end
 end
