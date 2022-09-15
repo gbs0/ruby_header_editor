@@ -7,7 +7,7 @@ end
 
 def generate_header(created_timestamp, updated_timestamp)
   header_file = File.read(STRUCT[:header_file])
-  header_file.gsub!("|*|", created_timestamp).gsub!("/*/", updated_timestamp)
+  header_file.gsub!("%*%", created_timestamp).gsub!("$*$", updated_timestamp)
   STRUCT[:header] = header_file
 end
 
