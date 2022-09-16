@@ -21,6 +21,5 @@ def parse_directory(arg_list)
     return Error::EXCEPTION.files_not_found
   else
     STRUCT[:files] = files.sort_by { |path| path.reverse }.flatten
-    generate_timestamp
   end
 end

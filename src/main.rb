@@ -10,6 +10,6 @@ def set_params(arg_list)
   else
     open_header(arg_list)
     parse_directory(arg_list)
-    build_files
+    write_files
   end
 end
