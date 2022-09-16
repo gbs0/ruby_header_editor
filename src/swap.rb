@@ -5,11 +5,17 @@ end
 def replace_header
   file_path = STRUCT[:files].first
   index = 0
+  STRUCT[:rest_of_file] = []
   File.open(file_path, "r+") do |file|
-    file.each_line do |line|
-      break if line == "\n"
-      file.write(STRUCT[:header][index])
-      index += 1
+    file.each_with_index do |line, index|
+      p "#{index} - #{line}"
+      if index <= 10
+        line << STRUCT[:header][index]
+        index += 1
+      else
+        line << line
+        # file.write(line)
+      end
     end
   end
 end

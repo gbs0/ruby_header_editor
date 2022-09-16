@@ -13,6 +13,3 @@ def set_params(arg_list)
     write_files
   end
 end
-
-
-main(ARGV)
