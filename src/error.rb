@@ -29,5 +29,10 @@ module Error
       puts "Error: Files not found - Non existent files with .c or .h extension"
       exit
     end
+
+    def self.unreachable_file_offset
+      puts "Error: Failed to generate header - Spaces offset is unreachable"
+      exit
+    end
   end
 end

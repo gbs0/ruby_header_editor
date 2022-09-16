@@ -20,11 +20,16 @@ def build_file_content
   STRUCT[:file_content] = STRUCT[:header].append(STRUCT[:file_body]).flatten!
 end
 
+def build_header(file_path)
+  generate_filename(file_path)
+  generate_timestamp
+  format_header  
+end
+
 def write_files
   STRUCT[:files].each do |file_path|
     build_file_body(file_path)
-    generate_timestamp
-    format_header
+    build_file_header(file_path)
     build_file_content
     File.open(file_path, "r+") do |file|
       STRUCT[:file_content].each { |line| file.write(line) } 

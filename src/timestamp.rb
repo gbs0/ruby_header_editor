@@ -12,3 +12,13 @@ def generate_header(created_timestamp, updated_timestamp)
   STRUCT[:header] = header_file
 end
 
+def generate_filename(file_path)
+  STRUCT[:header].clear unless STRUCT[:header].nil?
+  offset = 0
+  file_name = File.basename(file_path)
+  offset = SPACE_QTDY - file_name.length
+  Error::EXCEPTION.unreachable_file_offset if offset <= 0
+  offset.times { file_name += " " }
+  
+end
+
