@@ -22,7 +22,6 @@ end
 
 def build_file_header(file_path)
   generate_header_name(file_path)
-  # generate_timestamp
   format_header
 end
 
