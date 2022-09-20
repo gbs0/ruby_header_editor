@@ -1,7 +1,7 @@
 # We need to define a custom timestamp for each file
 def generate_timestamp(file_name)
   created_timestamp = Time.now.strftime("%Y/%m/%d %H:%m:%S")
-  updated_timestamp = (Time.now + 100_000).strftime("%Y/%m/%d %H:%m:%S")
+  updated_timestamp = (Time.now + 1_000).strftime("%Y/%m/%d %H:%m:%S")
   generate_header(created_timestamp, updated_timestamp, file_name)
 end
 
