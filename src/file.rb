@@ -26,12 +26,6 @@ def build_file_header(file_path)
   format_header
 end
 
-def clean_output
-  if (STRUCT[:file_content].last(2) == ["n (0);\r\n", "}\r\n"])
-    STRUCT[:file_content].slice!(0, content_length - 2)
-  end
-end
-
 def write_files
   STRUCT[:files].each do |file_path|
     build_file_body(file_path)
