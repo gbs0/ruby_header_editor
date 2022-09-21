@@ -1,4 +1,3 @@
-require 'pry'
 require 'time'
 require 'date'
 require_relative '../src/error'
