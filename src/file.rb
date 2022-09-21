@@ -15,9 +15,10 @@ def build_file_body(file_path)
 end
 
 def build_file_content
+  content_length = STRUCT[:file_content].length unless STRUCT[:file_content].nil?
   STRUCT[:file_content].clear unless STRUCT[:file_content].nil?
-  file_content = []  
-  STRUCT[:file_content] = STRUCT[:header].append(STRUCT[:file_body]).flatten!
+  STRUCT[:file_content] = STRUCT[:header].append(STRUCT[:file_body])
+  STRUCT[:file_content].flatten!
 end
 
 def build_file_header(file_path)
@@ -25,13 +26,19 @@ def build_file_header(file_path)
   format_header
 end
 
+def clean_output
+  if (STRUCT[:file_content].last(2) == ["n (0);\r\n", "}\r\n"])
+    STRUCT[:file_content].slice!(0, content_length - 2)
+  end
+end
+
 def write_files
   STRUCT[:files].each do |file_path|
     build_file_body(file_path)
     build_file_header(file_path)
     build_file_content
-    File.open(file_path, "r+") do |file|
-      STRUCT[:file_content].each { |line| file.write(line) } 
+    File.open(file_path, "wb") do |file|
+      STRUCT[:file_content].each { |line| file.write(line) }
     end
   end
 end
