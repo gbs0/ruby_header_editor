@@ -17,6 +17,6 @@ def generate_header_name(file_path)
   offset = 0
   file_name = File.basename(file_path)
   offset = SPACE_QTDY - file_name.length
-  offset <= 0 ? Error::EXCEPTION.unreachable_file_offset : offset.times { file_name += " " }
+  offset <= 0 ? Error::Exception.unreachable_file_offset : offset.times { file_name += " " }
   generate_timestamp(file_name)
 end

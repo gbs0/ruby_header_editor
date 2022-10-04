@@ -6,7 +6,7 @@ end
 
 def set_params(arg_list)
   if arg_list.size != 2
-    return Error::EXCEPTION.missing_params
+    return Error::Exception.missing_params
   else
     open_header(arg_list)
     parse_directory(arg_list)

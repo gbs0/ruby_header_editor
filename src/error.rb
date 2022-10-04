@@ -1,5 +1,5 @@
 module Error
-  module EXCEPTION
+  class Exception
     def self.missing_params
       puts "Error: Missing Params - Usage $ main.rb header_file path_to_files"
       exit
